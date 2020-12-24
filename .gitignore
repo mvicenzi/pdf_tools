@@ -1,0 +1,2 @@
+#ignore test output
+**/test/merge_output.pdf
