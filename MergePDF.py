@@ -36,7 +36,8 @@ if __name__ == "__main__":
         #take the dir path of the first file
         abs_path_file = os.path.abspath(sys.argv[1])
         file_dir_path, filename = os.path.split(abs_path_file)
-        output_path = os.path.join(file_dir_path,"merge_output.pdf")
+        filename, type = os.path.splitext(filename)
+        output_path = os.path.join(file_dir_path,filename+"_merged.pdf")
 
         AppendPDFs(filepaths, output_path)
 

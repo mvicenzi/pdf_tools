@@ -10,19 +10,19 @@ You can install it with:
 
 ## MergePDF.py
 This script merges multiple PDFs by appending them.
-It requires at least 2 input files. The output is in the same directory as the first input file with the name "merge_output.pdf".
+It requires at least 2 input files. The output is in the same directory as the first input file with the name <file1>_merged.pdf".
 To call the script:
 
     python MergePDF.py <file1> <file2> ... <fileN>
 
-For example, using the `test` folder, `python MergePDF.py test/file1.pdf test/file2.pdf test/file3.pdf` outputs in `test/merge_output.pdf`.
+For example, using the `test` folder, `python MergePDF.py test/file1.pdf test/file2.pdf test/file3.pdf` outputs in `test/file1_merged.pdf`.
 
 ## ExtractPDF.py
 This script extracts pages from an existing PDF.
 It requires an input file and the range of pages to be extracted (start and end page number). If the end page number is not specified, the pages are extracted from the staring page to the end of the document.
-The output is in the same directory as the input file with the name "extract_output.pdf".
+The output is in the same directory as the input file with the name "<file>_extracted.pdf".
 To call the script:
 
     python ExtractPDF.py <file> <start page number> <end page number (optional)>
 
-For example, using the `test` folder, `python ExtractPDF.py test/file1.pdf 12 15` outputs in `test/extract_output.pdf` pages from 12 to 15 included. While `python ExtractPDF.py test/file1.pdf 12` outputs pages from 12 to the end of the document.
+For example, using the `test` folder, `python ExtractPDF.py test/file1.pdf 12 15` outputs in `test/file1_extracted.pdf` pages from 12 to 15 included. While `python ExtractPDF.py test/file1.pdf 12` outputs pages from 12 to the end of the document.
