@@ -19,7 +19,7 @@ For example, using the `test` folder, `python MergePDF.py test/file1.pdf test/fi
 
 ## ExtractPDF.py
 This script extracts pages from an existing PDF.
-It requires an input file and the range of pages to be extracted (start and end page number). If the end page number is not specified, the pages are extracted from the staring page to the end of the document.
+It requires an input file and the range of pages to be extracted (start and end page number). If the end page number is not specified, the pages are extracted from the starting page to the end of the document.
 The output is in the same directory as the input file with the name "<file>_extracted.pdf".
 To call the script:
 
