@@ -12,7 +12,7 @@ def AppendPDFs(filepaths, output_path):
 
     for path in filepaths:
         #bookmark: text of bookmark at the beginning of the appended pages
-        #pages: specify range of pages to appended
+        #pages: specify range of pages to append
         #import_bookmarks: bookmarks are kept when appending
         merger.append(path, bookmark=None, pages=None, import_bookmarks=True)
 
