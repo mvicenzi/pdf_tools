@@ -6,6 +6,7 @@ import os.path
 from MergePDF import AppendPDFs
 from ExtractPDF import ExtractPDFs
 from RotatePDF import MultiRotate
+
 #-------------------------------------------------------------------------------
 # MERGE WINDOW: allows to select file to needs to be merged
 # there needs to be at least two files correctly selected + output path
@@ -33,7 +34,7 @@ def run_merge():
 
         if merge_event == sg.WIN_CLOSED or merge_event == 'Cancel':
             merge_window.close()
-            exit()
+            sys.exit()
 
         if merge_event == 'Merge':
             ifile = merge_values["-FILE-"]
@@ -47,7 +48,7 @@ def run_merge():
                 AppendPDFs(filepaths, ofile)
                 merge_window.close()
                 sg.popup("Files merged in " + ofile)
-                exit()
+                sys.exit()
             else:
                 sg.popup("Missing inputs: select at least two pdf files and the output name!")
 
@@ -73,7 +74,7 @@ def run_extract():
 
         if extract_event == sg.WIN_CLOSED or extract_event == 'Cancel':
             extract_window.close()
-            exit()
+            sys.exit()
 
         if extract_event == 'Extract':
             ifile = extract_values["-FILE-"]
@@ -100,12 +101,13 @@ def run_extract():
                 ExtractPDFs(ifile, start_page_number, end_page_number, ofile)
                 extract_window.close()
                 sg.popup("File extracted in " + ofile)
-                exit()
+                sys.exit()
         else:
             sg.popup("Missing inputs: select a valid interval and the output name!")
 
 #-------------------------------------------------------------------------------
 #ROTATE WINDOW:
+
 rotate_layout = [ [sg.Text('Select PDF file:')],
                  [sg.In(size=(50,10), key="-FILE-"), sg.FileBrowse(key="-brFile-", file_types=(("PDF files", "*.pdf"),))],
                  [sg.Text('Select rotation:')],
@@ -125,7 +127,7 @@ def run_rotate():
 
         if rotate_event == sg.WIN_CLOSED or rotate_event == 'Cancel':
             rotate_window.close()
-            exit()
+            sys.exit()
 
         if rotate_event == 'Rotate':
             ifile = rotate_values["-FILE-"]
@@ -155,7 +157,7 @@ def run_rotate():
                 MultiRotate(ifile, rotation*angle, pages, ofile)
                 rotate_window.close()
                 sg.popup("File extracted in " + ofile)
-                exit()
+                sys.exit()
         else:
             sg.popup("Missing inputs: select a valid interval and the output name!")
 
@@ -178,7 +180,7 @@ if __name__ == "__main__":
         #if user closes the window or clicks cancel
         if event == sg.WIN_CLOSED or event == 'Cancel':
             window.close()
-            exit()
+            sys.exit()
 
         #if user clicks ok button
         if event == "Ok":
