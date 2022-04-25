@@ -18,7 +18,7 @@ The interactive GUI can be launched simply with:
 
 The user is then guided through the available operations. File browsers and error popups support the user while selecting different options.
 
-The GUI can also be made into a single `.EXE` file for Windows (read more [https://pysimplegui.readthedocs.io/en/latest/#creating-a-windows-exe-file](here)). This file is already available as `dist\PDF_Tools.exe`
+The GUI can also be made into a single `.EXE` file for Windows (read more [here](https://pysimplegui.readthedocs.io/en/latest/#creating-a-windows-exe-file)). This file is already available as [dist/PDF_Tools.exe](/dist).
 
 ### Scripts via command terminal
 #### MergePDF.py
