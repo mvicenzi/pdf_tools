@@ -5,7 +5,7 @@ import os.path
 
 from MergePDF import AppendPDFs
 from ExtractPDF import ExtractPDFs
-
+from RotatePDF import MultiRotate
 #-------------------------------------------------------------------------------
 # MERGE WINDOW: allows to select file to needs to be merged
 # there needs to be at least two files correctly selected + output path
@@ -66,7 +66,7 @@ extract_layout = [ [sg.Text('Select PDF file:')],
                  [sg.Button('Extract'), sg.Button('Cancel')] ]
 
 def run_extract():
-    extract_window = sg.Window('PDF Tools - Extract/Cut', extract_layout, size=(500,350))
+    extract_window = sg.Window('PDF Tools - Extract/Cut', extract_layout, size=(500,340))
 
     while True:
         extract_event, extract_values = extract_window.read()
@@ -96,18 +96,68 @@ def run_extract():
                     sg.popup("Missing input: select a valid ending page")
                     continue
 
-            ExtractPDFs(ifile, start_page_number, end_page_number, ofile)
-            extract_window.close()
-            sg.popup("File extracted in " + ofile)
-            exit()
+            if ifile != "" and ofile != "":
+                ExtractPDFs(ifile, start_page_number, end_page_number, ofile)
+                extract_window.close()
+                sg.popup("File extracted in " + ofile)
+                exit()
         else:
             sg.popup("Missing inputs: select a valid interval and the output name!")
 
 #-------------------------------------------------------------------------------
 #ROTATE WINDOW:
+rotate_layout = [ [sg.Text('Select PDF file:')],
+                 [sg.In(size=(50,10), key="-FILE-"), sg.FileBrowse(key="-brFile-", file_types=(("PDF files", "*.pdf"),))],
+                 [sg.Text('Select rotation:')],
+                 [sg.Radio("Clockwise", "Radio1", key="-CLOCK-", default=True), sg.Radio("Counter-clockwise:","Radio1", key="-CCLOCK-"),
+                 sg.DropDown(['90','180','270'], size=(5,10), key="-ROTATION-")],
+                 [sg.Text('Insert pages to be rotated, separated by commas.\nPage numbering starts from 1.')],
+                 [sg.Input(size=(50,10), key="-PAGES-")],
+                 [sg.Text('Save output as:')],
+                 [sg.In(size=(50,10), key="-OUT-"), sg.FileBrowse(key="-brOUT-", file_types=(("PDF files", "*.pdf"),))],
+                 [sg.Button('Rotate'), sg.Button('Cancel')] ]
 
 def run_rotate():
-    sg.popup("Hello sphere!")
+    rotate_window = sg.Window('Rotate - Extract/Cut', rotate_layout, size=(500,300))
+
+    while True:
+        rotate_event, rotate_values = rotate_window.read()
+
+        if rotate_event == sg.WIN_CLOSED or rotate_event == 'Cancel':
+            rotate_window.close()
+            exit()
+
+        if rotate_event == 'Rotate':
+            ifile = rotate_values["-FILE-"]
+            ofile = rotate_values["-OUT-"]
+
+            rotation = -1 # clockwise by default
+            angle = 0
+            pages = []
+
+            if rotate_values['-CCLOCK-']:
+                rotation = 1
+
+            if( rotate_values['-ROTATION-'].isdigit() ):
+                    angle = int(rotate_values['-ROTATION-'])
+            else:
+                sg.popup("Missing input: select rotation angle!")
+                continue
+
+            for page in rotate_values['-PAGES-'].split(","):
+                if( page.isdigit() ):
+                    pages.append(int(page))
+                else:
+                    sg.popup("Wrong input: invalid page number")
+                    continue
+
+            if ifile != "" and ofile != "" and len(pages)>0:
+                MultiRotate(ifile, rotation*angle, pages, ofile)
+                rotate_window.close()
+                sg.popup("File extracted in " + ofile)
+                exit()
+        else:
+            sg.popup("Missing inputs: select a valid interval and the output name!")
 
 #-------------------------------------------------------------------------------
 #FIRST WINDOW: choose the operation
