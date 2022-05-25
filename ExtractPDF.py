@@ -6,7 +6,7 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 #This function extracts pages from a PDF
 def ExtractPDFs(filepath, start_page_number, end_page_number, output_path):
 
-    reader = PdfFileReader(filepath)
+    reader = PdfFileReader(filepath, strict=False)
     writer = PdfFileWriter()
 
     numPages = reader.getNumPages()

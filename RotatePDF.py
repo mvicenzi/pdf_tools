@@ -7,7 +7,7 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 #if positive, rotateCounterClockwise
 #if negative, rotateClockwise
 def RotatePage(page, rotation):
-    
+
     if rotation < 0:
         rotation = -rotation
         newpage = page.rotateClockwise(rotation)
@@ -19,7 +19,7 @@ def RotatePage(page, rotation):
 #This function rotates a selection of PDF pages
 def MultiRotate(filepath, rotation, pages, output_path):
 
-    reader = PdfFileReader(filepath)
+    reader = PdfFileReader(filepath, strict=False)
     writer = PdfFileWriter()
 
     #get total number of pages
