@@ -1,5 +1,5 @@
 # pdf_tools
-This repository contains Python scripts that I use to operate on PDFs (merge, extract/split, rotate, ...). They can be use directly from the command terminal or via a user-friendly interactive GUI.
+This repository contains Python scripts that I use to operate on PDFs (merge, extract/split, rotate, ...). They can be used directly from the command terminal or via a user-friendly interactive GUI.
 
 ## Requirements
 The scripts are based on `PyPDF2`, a Python library to manipulate PDFs (see [https://pypi.org/project/PyPDF2/](https://pypi.org/project/PyPDF2/)). You can install it with:
