@@ -8,7 +8,7 @@ from PyPDF2 import PdfFileMerger
 #output_path: path to output file
 def AppendPDFs(filepaths, output_path):
 
-    merger = PdfFileMerger()
+    merger = PdfFileMerger(strict=False)
 
     for path in filepaths:
         #bookmark: text of bookmark at the beginning of the appended pages
