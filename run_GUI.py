@@ -133,12 +133,12 @@ def run_rotate():
             ifile = rotate_values["-FILE-"]
             ofile = rotate_values["-OUT-"]
 
-            rotation = -1 # clockwise by default
+            rotation = 1 # clockwise by default
             angle = 0
             pages = []
 
             if rotate_values['-CCLOCK-']:
-                rotation = 1
+                rotation = -1
 
             if( rotate_values['-ROTATION-'].isdigit() ):
                     angle = int(rotate_values['-ROTATION-'])

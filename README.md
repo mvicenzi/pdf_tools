@@ -2,9 +2,9 @@
 This repository contains Python scripts that I use to operate on PDFs (merge, extract/split, rotate, ...). They can be used directly from the command terminal or via a user-friendly interactive GUI.
 
 ## Requirements
-The scripts are based on `PyPDF2`, a Python library to manipulate PDFs (see [https://pypi.org/project/PyPDF2/](https://pypi.org/project/PyPDF2/)). You can install it with:
+The scripts are based on `pypdf`, a Python library to manipulate PDFs (see [https://pypi.org/project/pypdf/](https://pypi.org/project/pypdf/)). You can install it with:
 
-    pip install PyPDF2
+    pip install pypdf
 
 The GUI is based on `PySimpleGUI`, a simple Python interface for several GUI frameworks (see [https://pypi.org/project/PySimpleGUI/](https://pypi.org/project/PySimpleGUI/)). You can install it with:
 
@@ -35,6 +35,6 @@ It requires an input file and the range of pages to be extracted (start and end 
 
 #### RotatePDF.py
 This script rotates pages in an existing PDF.
-It requires an input file, a valid rotation and the list of pages (at least one) to be rotated. Rotations are valid only if multiple of 90 degrees: `90 180 270 ...` are valid counter-clockwise rotations, while `-90 -180 -270 ...` are valid clockwise rotations. The output is in the same directory as the input file with the name "<file>_rotated.pdf".
+It requires an input file, a valid rotation and the list of pages (at least one) to be rotated. Rotations are valid only if multiple of 90 degrees: `90 180 270 ...` are valid clockwise rotations, while `-90 -180 -270 ...` are valid counter-clockwise rotations. The output is in the same directory as the input file with the name "<file>_rotated.pdf".
 
     python RotatePDF.py <file> <rotation> <page1> <page2> ... <pageN>

@@ -1,15 +1,15 @@
 #!/usr/bin/python
 import sys
 import os.path
-from PyPDF2 import PdfFileReader, PdfFileWriter
+from pypdf import PdfReader, PdfWriter
 
 #This function extracts pages from a PDF
 def ExtractPDFs(filepath, start_page_number, end_page_number, output_path):
 
-    reader = PdfFileReader(filepath, strict=False)
-    writer = PdfFileWriter()
+    reader = PdfReader(filepath, strict=False)
+    writer = PdfWriter()
 
-    numPages = reader.getNumPages()
+    numPages = len(reader.pages)
     if start_page_number > numPages:
         print("ERROR: start page",start_page_number,"is outside the document range 1 -",numPages)
         exit()
@@ -26,8 +26,8 @@ def ExtractPDFs(filepath, start_page_number, end_page_number, output_path):
     end_page_number = end_page_number-1
 
     for index in range(start_page_number,end_page_number+1,1):
-        page = reader.getPage(index)
-        writer.addPage(page)
+        page = reader.pages[index]
+        writer.add_page(page)
 
     with open(output_path,"wb") as output_file:
         writer.write(output_file)

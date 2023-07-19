@@ -1,20 +1,20 @@
 #!/usr/bin/python
 import sys
 import os.path
-from PyPDF2 import PdfFileMerger
+from pypdf import PdfMerger
 
 #This function appends all input files into one
 #filepaths: list of input files
 #output_path: path to output file
 def AppendPDFs(filepaths, output_path):
 
-    merger = PdfFileMerger(strict=False)
+    merger = PdfMerger(strict=False)
 
     for path in filepaths:
-        #bookmark: text of bookmark at the beginning of the appended pages
+        #outline_item: text of bookmark at the beginning of the appended pages
         #pages: specify range of pages to append
-        #import_bookmarks: bookmarks are kept when appending
-        merger.append(path, bookmark=None, pages=None, import_bookmarks=True)
+        #import_outline: bookmarks are kept when appending
+        merger.append(path, outline_item=None, pages=None, import_outline=True)
 
     merger.write(output_path)
     merger.close()
